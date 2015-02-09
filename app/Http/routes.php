@@ -11,11 +11,6 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::get('/', 'PhotosController@index');
+Route::get('/photo/{id}', 'PhotosController@getPhoto');
+Route::get('/createphoto', array('as' => 'create_photo_form','uses' => 'PhotosController@getForm'));
