@@ -12,5 +12,6 @@
 */
 
 Route::get('/', 'PhotosController@index');
+Route::get('/photo/add', array('as' => 'create_photo_form','uses' => 'PhotosController@getForm'));
 Route::get('/photo/{id}', 'PhotosController@getPhoto');
-Route::get('/createphoto', array('as' => 'create_photo_form','uses' => 'PhotosController@getForm'));
+

@@ -27,7 +27,7 @@ class PhotosController extends Controller {
 
     public function getForm()
     {
-        return view('createphoto');
+        return view('addphoto');
     }
 
 }
