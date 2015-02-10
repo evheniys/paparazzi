@@ -5,13 +5,15 @@ use App\Http\Controllers\Controller;
 
 
 use App\Photo;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Input;
+use Request;
 
 class PhotosController extends Controller {
 
     public function index()
     {
-        $photos = Photo::all();
+        $photos = Photo::latest()->get();
         return view('index',compact($photos));
         //return view('home');
     }
@@ -30,4 +32,28 @@ class PhotosController extends Controller {
         return view('addphoto');
     }
 
+    public function storePhoto()
+    {
+
+        $filename = "";
+        $extension = "";
+        if (\Input::hasFile('photofile')) {
+            $allowedext = array("png", "jpg", "jpeg");
+            $photof = \Input::file('photofile');
+            $destinationPath = public_path() . '/uploads';
+            $filename = str_random(12);
+            $extension = $photof->getClientOriginalExtension();
+            if (in_array($extension, $allowedext)) {
+                $upload_success = \Input::file('photofile')->move($destinationPath, $filename . '.' . $extension);
+                print_r($upload_success->pathName);
+            }
+            $photo = Request::all();
+            $photo['published_at'] = Carbon::now();
+            $photo['photofile'] = $upload_success;
+
+        }
+        //print_r($photo);
+        //Photo::create($photo);
+        //return redirect('/');
+    }
 }
