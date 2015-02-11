@@ -15,10 +15,14 @@ class PhotosController extends Controller {
     {
         //$photos = Photo::latest()->get();
         $photos = Photo::all();
-        print_r($photos);
+       //print_r($photos);
+        //foreach ($photos as $photo) {
+            //echo $photo->title;
+            //print_r ($photo);
+        //}
 
-        dd($photos);
-        return view('index',compact($photos));
+        //dd($photos);
+       return view('index',compact('photos'));
         //return view('home');
     }
 
