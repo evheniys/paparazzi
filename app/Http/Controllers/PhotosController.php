@@ -13,7 +13,11 @@ class PhotosController extends Controller {
 
     public function index()
     {
-        $photos = Photo::latest()->get();
+        //$photos = Photo::latest()->get();
+        $photos = Photo::all();
+        print_r($photos);
+
+        dd($photos);
         return view('index',compact($photos));
         //return view('home');
     }
@@ -37,23 +41,31 @@ class PhotosController extends Controller {
 
         $filename = "";
         $extension = "";
-        if (\Input::hasFile('photofile')) {
+
+        $tfile = Request::file();
+
+
+
+        if (Request::hasFile('photofile')) {
+
             $allowedext = array("png", "jpg", "jpeg");
-            $photof = \Input::file('photofile');
-            $destinationPath = public_path() . '/uploads';
-            $filename = str_random(12);
+            $photof = Request::file('photofile');
+            $destinationPath = 'images';
+            $filename = $photof->getClientOriginalName();
             $extension = $photof->getClientOriginalExtension();
+
             if (in_array($extension, $allowedext)) {
-                $upload_success = \Input::file('photofile')->move($destinationPath, $filename . '.' . $extension);
-                print_r($upload_success->pathName);
+                $photo = Request::all();
+                $upload_success = Request::file('photofile')->move($destinationPath, $filename);
+                $photo['photofile'] = $upload_success->getPathname();
             }
-            $photo = Request::all();
+
             $photo['published_at'] = Carbon::now();
-            $photo['photofile'] = $upload_success;
+
 
         }
-        //print_r($photo);
-        //Photo::create($photo);
-        //return redirect('/');
+
+        Photo::create($photo);
+        return redirect('/');
     }
 }

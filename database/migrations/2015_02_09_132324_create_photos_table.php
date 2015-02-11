@@ -17,7 +17,7 @@ class CreatePhotosTable extends Migration {
 			$table->increments('id')->unsigned();
 			$table->string('title');
 			$table->text('description');
-			$table->string('photo');
+			$table->string('photofile');
 			$table->timestamps();
 		});
 	}
