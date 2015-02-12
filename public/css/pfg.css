@@ -9,3 +9,5 @@ header img {
 header .columns {
     text-align: center;
 }
+.clearing-blackout .clearing-container .visible-img { height: 100% !important; }
+.clearing-blackout .clearing-container .carousel { display: none !important; }

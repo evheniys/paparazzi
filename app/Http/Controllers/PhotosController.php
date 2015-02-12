@@ -7,14 +7,15 @@ use App\Http\Controllers\Controller;
 use App\Photo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\File;
 use Request;
 
 class PhotosController extends Controller {
 
     public function index()
     {
-        //$photos = Photo::latest()->get();
-        $photos = Photo::all();
+        $photos = Photo::latest()->get();
+        //$photos = Photo::all();
        //print_r($photos);
         //foreach ($photos as $photo) {
             //echo $photo->title;
@@ -46,30 +47,34 @@ class PhotosController extends Controller {
         $filename = "";
         $extension = "";
 
-        $tfile = Request::file();
-
-
 
         if (Request::hasFile('photofile')) {
 
             $allowedext = array("png", "jpg", "jpeg");
             $photof = Request::file('photofile');
-            $destinationPath = 'images';
-            $filename = $photof->getClientOriginalName();
+            $destinationPath =  'Gallery';
+            $filename = 'PaparazziFeelGood_'.$photof->getClientOriginalName();
             $extension = $photof->getClientOriginalExtension();
 
             if (in_array($extension, $allowedext)) {
                 $photo = Request::all();
-                $upload_success = Request::file('photofile')->move($destinationPath, $filename);
-                $photo['photofile'] = $upload_success->getPathname();
+                if(!File::exists(public_path().'/'.$destinationPath)) {
+                    if(!File::makeDirectory(public_path().'/'.$destinationPath)) {
+                        abort(503);
+                    }
+                }
+                $upload_success = Request::file('photofile')->move(public_path().'/'.$destinationPath, $filename);
+                $photo['photofile'] = $destinationPath.'/'.$upload_success->getFilename();
+                $photo['published_at'] = Carbon::now();
+                Photo::create($photo);
+
             }
 
-            $photo['published_at'] = Carbon::now();
 
 
         }
+        return redirect('/photo/add');
 
-        Photo::create($photo);
-        return redirect('/');
+
     }
 }
