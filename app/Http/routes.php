@@ -15,16 +15,19 @@ Route::get('/', 'PhotosController@index');
 Route::get('/photo/add', array('as' => 'create_photo_form','uses' => 'PhotosController@getForm'));
 Route::get('/photo/{id}', 'PhotosController@getPhoto');
 Route::post('/photo/add', 'PhotosController@storePhoto');
-Route::get('/Gallery/thumb/{path}', function($path)
+/*Route::get('/Gallery/thumb/{path}', function($path)
 {
     $img_path = 'public/Gallery/'.$path;
+
     $img = Image::make($img_path);
     $img->resize(300, null, function ($constraint) {
         $constraint->aspectRatio();
     });
+    $img2path = 'public/Gallery/thumb/'.$path;
+    $img->save($img2path);
     $response = Response::make($img->encode('jpg'));
     $response->header('Content-Type', 'image/jpg');
     return $response;
-});
+});*/
 
 
