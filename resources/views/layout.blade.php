@@ -9,7 +9,9 @@
 
 	<link href="/css/normalize.css" rel="stylesheet">
 	<link href="/css/foundation.css" rel="stylesheet">
+	<link href="/css/magnific-popup.css" rel="stylesheet">
 	<link href="/css/pfg.css" rel="stylesheet">
+
 	<!-- Fonts -->
 
 
@@ -36,6 +38,7 @@
 	</div>
 <script src="/js/vendor/jquery.js"></script>
 <script src="/js/vendor/modernizr.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
 <script src="/js/foundation.min.js"></script>
 <script src="/js/foundation/foundation.js"></script>
 <script src="/js/foundation/foundation.clearing.js"></script>
@@ -44,6 +47,18 @@
 	$(document).foundation();
 	var doc = document.documentElement;
 	doc.setAttribute('data-useragent', navigator.userAgent);
+
+	$(document).ready(function() {
+		$('.image-popup-vertical-fit').magnificPopup({
+			type: 'image',
+			closeOnContentClick: true,
+			mainClass: 'mfp-img-mobile',
+			image: {
+				verticalFit: true
+			}
+
+		});
+	});
 </script>
 </body>
 </html>
