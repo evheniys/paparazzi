@@ -6,8 +6,97 @@ header img {
     margin: 0.3em auto;
     height: 10em;
 }
+#fixed-top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    width: 100%;
+    height: 17em;
+    background-color: #000000;
+}
+#fixed-top-bar hr {
+    margin: 0;
+    padding: 0;
+}
+#content {
+    margin-top: 17em;
+}
+#logo {
+    text-align: center;
+}
+#logo a {
+    background: url("/img/paparazzifeelgood.svg") no-repeat scroll 0 0 / 7em auto rgba(0, 0, 0, 0);
+    display: block;
+    height: 3.6em;
+    margin: 0 auto;
+    text-indent: -9999em;
+    width: 7em;
+}
+#contact {
+    font-family: 'Kotta One', serif;
+    text-align: center;
+    font-size: 1.1em;
+    color: #ffffff;
+}
 header .columns {
     text-align: center;
 }
 .clearing-blackout .clearing-container .visible-img { height: 100% !important; }
 .clearing-blackout .clearing-container .carousel { display: none !important; }
+
+ [class*="block-grid-"] > a {
+    display: block;
+    height: auto;
+   float: left;
+    padding: 0 0.625rem 1.25rem; }
+
+/* [class*="block-grid-"] > a > img{
+    display: block;
+    height: auto;
+    float: left;
+    padding: 0 0.625rem 1.25rem; } */
+
+[class*="block-grid-"] > a > img {
+    text-decoration: none;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+a.image-popup-vertical-fit:hover img {
+    transform: rotate(0deg) scale(1.02);
+    z-index: 1;
+}
+
+
+@media only screen {
+    .small-block-grid-1 > a {
+        width: 100%;
+        }
+/*    .small-block-grid-1 > a:nth-of-type(1n) {
+        clear: none; }
+    .small-block-grid-1 > a:nth-of-type(1n+1) {
+        clear: both; }*/
+}
+@media only screen and (min-width: 40.063em) {
+    .medium-block-grid-2 > a {
+        width: 50% ;
+        list-style: none; }
+    .medium-block-grid-2 > a:nth-of-type(1n) {
+        clear: none; }
+    .medium-block-grid-2 > a:nth-of-type(2n+1) {
+        clear: both; }
+}
+@media only screen and (min-width: 64.063em) {
+    .large-block-grid-4 > a {
+        width: 25% !important;
+        max-width: 25%;
+    }
+
+/*    .large-block-grid-4 > a:nth-of-type(1n) {
+        clear: none; }
+    .large-block-grid-4 > a:nth-of-type(4n+1) {
+        clear: both; } */
+}
+.th:hover, .th:focus {
+    box-shadow: 0 0 6px 3px rgba(250, 250, 200, 0.5);
+}

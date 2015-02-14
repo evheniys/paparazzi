@@ -17,12 +17,12 @@ class PhotosController extends Controller {
         $photos = Photo::latest()->get();
         //$photos = Photo::all();
        //print_r($photos);
-       /* foreach ($photos as $photo) {
-            if (!isset($photo->photothumb) or is_null($photo->photothumb) or $photo->photothumb =='' ) {
-                $photo->photothumb = str_replace('Gallery','Gallery/thumb',$photo->photofile);
-                $photo->save();
-            }
-        }*/
+       // foreach ($photos as $photo) {
+        //    if (!isset($photo->photothumb) or is_null($photo->photothumb) or $photo->photothumb =='' ) {
+        //        $photo->photothumb = str_replace('Gallery','Gallery/thumb',$photo->photofile);
+        //        $photo->save();
+        //    }
+       // }
        return view('index',compact('photos'));
         //return view('home');
     }

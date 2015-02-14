@@ -11,6 +11,7 @@
 	<link href="/css/foundation.css" rel="stylesheet">
 	<link href="/css/magnific-popup.css" rel="stylesheet">
 	<link href="/css/pfg.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Kotta+One' rel='stylesheet' type='text/css'>
 
 	<!-- Fonts -->
 
@@ -24,25 +25,28 @@
 
 </head>
 <body>
-<header>
+<header id="fixed-top-bar">
 	<div class="row">
-		<div class="large-12 columns">
-			<img src="/img/paparazzifeelgood.svg">
+		<div class="small-12 medium-12 large-12 columns">
+			<h1 id="logo"><a title="Feel Good Paparazzi" href="/">Feel Good Paparazzi</a></h1>
+			<h2 id="contact">Ukraine, Lemberg, Citadel<br>VS-Bank, office 104<br>(098) 098-5000</h2>
+			<hr>
 		</div>
 	</div>
 </header>
-	<div class="row">
+	<div id="content" class="row">
 		<div class="large-12 columns">
 			@yield('content')
 		</div>
 	</div>
 <script src="/js/vendor/jquery.js"></script>
 <script src="/js/vendor/modernizr.js"></script>
-<script src="/js/jquery.magnific-popup.min.js"></script>
 <script src="/js/foundation.min.js"></script>
 <script src="/js/foundation/foundation.js"></script>
-<script src="/js/foundation/foundation.clearing.js"></script>
-<script src="/js/foundation/foundation.reveal.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/masonry.pkgd.min.js"></script>
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+
 <script>
 	$(document).foundation();
 	var doc = document.documentElement;
@@ -58,7 +62,16 @@
 			}
 
 		});
+		var $container = $('#imgcontainer');
+
+
+// layout Masonry again after all images have loaded
+		$container.imagesLoaded( function() {
+			$container.masonry();
+		});
+
 	});
+
 </script>
 </body>
 </html>
